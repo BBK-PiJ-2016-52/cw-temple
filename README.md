@@ -62,11 +62,11 @@ goal of the escape phase is to make it to the entrance of the cavern before it c
 However, a score component is based on two additional factors:
 1. The amount of gold that you pick up during the escape phase, and
 2. Your score from the exploration phase.
->The score will simply be the amount of gold picked up times the score from the exploration
-phase.   
+> **The score will simply be the amount of gold picked up times the score from the exploration
+phase.**   
 
-
-[img]http://i.imgur.com/MCnWM1W.png[/img]
+![](http://i.imgur.com/MCnWM1W.png)
+###### Figure 2: Collecting gold during the escape phase
 
 
 
