@@ -2,8 +2,8 @@
 [![source](https://img.shields.io/badge/source-test-yellow.svg)][test]
 [![implementation](https://img.shields.io/badge/implementation-java-blue.svg)][java]
 
-[main]: https://github.com/BBK-PiJ-2016-52/SDP/tree/master/coursework/cw-one/src/main/scala/sml
-[test]: https://github.com/BBK-PiJ-2016-52/SDP/tree/master/coursework/cw-one/src/test/scala/sml
+[main]: https://github.com/BBK-PiJ-2016-52/cw-temple/tree/master/src/main/java
+[test]: https://github.com/BBK-PiJ-2016-52/cw-temple/tree/master/src/test/java
 [java]: http://docs.oracle.com/javase/8/docs/api/
 
 ## Coursework Assignment 4 - Philip Hammond and the Temple of Gloom! :bookmark_tabs: :mag: :postbox:   
