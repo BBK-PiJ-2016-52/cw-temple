@@ -65,7 +65,7 @@ However, a score component is based on two additional factors:
 > **The score will simply be the amount of gold picked up times the score from the exploration
 phase.**   
 
-![](http://i.imgur.com/MCnWM1W.png)
+![Figure 2: Collecting gold during the escape phase](http://i.imgur.com/MCnWM1W.png)
 ###### Figure 2: Collecting gold during the escape phase
 
 
@@ -119,3 +119,7 @@ phase.**
 --------------------------------------------------------------------------------------------------|----------------------------------------------------------------|---------------------------------------------------|
 <img src="https://avatars1.githubusercontent.com/u/22638726?v=3&s=460"      height="50px" title="Eric Rodriguez"/>        |  Jake Holdom  - BSc Music & Audio Technology        | [`@BBK-PiJ-2016-52`](https://github.com/BBK-PiJ-2016-52)  |
 <img src="https://avatars0.githubusercontent.com/u/22904851?v=3&u=cfb4a9acace450d6628c1c80ce6e46c985e178d2&s=400"      height="50px" title="Eric Rodriguez"/>        |    Eric Rodriguez - B.Eng. Mechatronics      |  [`@BBK-PiJ-2016-52`](https://github.com/BBK-PiJ-2016-52) |
+
+#### Credits
+### Thank you to Eric Perdew, Ryan Pindulic, and Ethan Cecchetti from the Department of
+### Computer Science at Cornell for the basis of this coursework.
