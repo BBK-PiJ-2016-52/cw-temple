@@ -6,7 +6,7 @@
 [test]: https://github.com/BBK-PiJ-2016-52/cw-temple/tree/master/src/test/java
 [java]: http://docs.oracle.com/javase/8/docs/api/
 
-## Coursework Assignment 4 - Philip Hammond and the Temple of Gloom! :money_with_wings: :door: :mag: :running:   
+## Coursework Assignment 4 - Philip Hammond and the Temple of Gloom! :money_with_wings: :mag: :running:   
 
 #### Overview
 
@@ -137,5 +137,5 @@ on the current tile or it has already been collected.
 <img src="https://avatars0.githubusercontent.com/u/22904851?v=3&u=cfb4a9acace450d6628c1c80ce6e46c985e178d2&s=400"      height="50px" title="Eric Rodriguez"/>        |    Eric Rodriguez - B.Eng. Mechatronics      |  [`@BBK-PiJ-2016-52`](https://github.com/BBK-PiJ-2016-52) |
 
 #### Credits
- Thank you to Eric Perdew, Ryan Pindulic, and Ethan Cecchetti from the Department of
- Computer Science at Cornell for the basis of this coursework.
+ Thank you to Eric Perdew, Ryan Pindulic, and Ethan Cecchetti from the [`Department of Computer Science at Cornell`](https://www.cs.cornell.edu/) for the basis of this coursework.
+
