@@ -6,7 +6,7 @@
 [test]: https://github.com/BBK-PiJ-2016-52/cw-temple/tree/master/src/test/java
 [java]: http://docs.oracle.com/javase/8/docs/api/
 
-## Coursework Assignment 4 - Philip Hammond and the Temple of Gloom! :bookmark_tabs: :mag: :postbox:   
+## Coursework Assignment 4 - Philip Hammond and the Temple of Gloom! :money_with_wings: :door: :mag: :running:   
 
 #### Overview
 
