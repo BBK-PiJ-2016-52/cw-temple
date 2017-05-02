@@ -27,7 +27,8 @@ is equal to the number of tiles on the shortest path to the Orb, if there werenâ
 obstacles in the way.
 
 
-![](http://i.imgur.com/OsBwH1m.png)
+![](http://i.imgur.com/4IOnOCV.png)
+###### Figure 1. Searching for the Orb during the exploration phase
 
 
 You will develop the solution to this phase in the method explore() in the class
