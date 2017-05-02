@@ -13,11 +13,10 @@
 I'll help the explorer and professor of archeology Philip Hammond claim the Orb of Lots, which is located in the Temple of Gloom. You will help him explore
 an unknown cavern under the temple, claim the orb, and escape before the entrance
 collapses. There will be great rewards for those who help Philip fill his pockets with gold
-on the way out. There are two major phases to this assignment:
-• the *exploration* phase, and
-• the *escape* phase,
-each of which involves writing a separate method in Java. We explain these phases in
-detail after presenting some further introductory material.
+on the way out. There are two major phases to this assignment:  
+• the *exploration phase*  
+• the *escape phase*  
+each of which involves writing a separate method in Java. 
 
 #### The Exploration Phase
 On the way to the Orb (see Figure 1), the layout of the cavern is unknown. You know
@@ -26,6 +25,11 @@ and perhaps those that you remember. Your goal is to make it to the Orb in as fe
 as possible. This is not a blind search, as you will know the distance to the Orb. This 
 is equal to the number of tiles on the shortest path to the Orb, if there weren’t walls or
 obstacles in the way.
+
+
+![](http://i.imgur.com/OsBwH1m.png)
+
+
 You will develop the solution to this phase in the method explore() in the class
 Explorer within package student. There is no time limit on the number of steps you
 can take, but you will receive a higher score for finding the Orb in fewer steps. To pick
