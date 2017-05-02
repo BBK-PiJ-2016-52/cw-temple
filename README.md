@@ -31,7 +31,7 @@ obstacles in the way.
 ###### Figure 1. Searching for the Orb during the exploration phase
 
 
-The solution to this phase in the method ```explore()``` in the class ```Explorer``` within package ```student```. There is no time limit on the number of steps you
+The _solution_ to this phase in the method ```explore()``` in the class ```Explorer``` within package ```student```. There is no time limit on the number of steps you
 can take, but you will receive a higher score for finding the Orb in fewer steps. To pick
 up the Orb, simply return from this method once you have arrived on its tile. Returning
 when Philip is not on the Orb tile will cause an exception to be thrown, halting the game.
@@ -68,7 +68,24 @@ phase.**
 ![Figure 2: Collecting gold during the escape phase](http://i.imgur.com/MCnWM1W.png)
 ###### Figure 2: Collecting gold during the escape phase
 
+The _solution_ code to this part of the problem in a function ```escape()``` in
+the class ```Explorer``` in the package ```student```. To escape, simply return from this method
+while standing on the entrance tile. Returning while at any other position, or failing to
+return before time runs out, will cause the game to end and result in a score of 0.
 
+Every time a move is made, this object will automatically change to reflect the new location of the explorer. This object includes the following
+methods:
+* ```Node getCurrentNode()```: return the Node corresponding to the explorers location.   
+* ```Node getExit()```: return the Node corresponding to the exit to the cavern (the destination).   
+* ```Collection<Node> getVertices()```: return a collection of all traversable nodes in the
+graph.   
+* ```int getTimeRemaining()```: return the number of steps the explorer has left before the
+ceiling collapses.   
+* ```void moveTo(Node n)```: move the explorer to node n. this will fail if the given node is
+not adjacent to the explorers current location. Calling this function will decrement
+the time remaining.   
+* ```void pickUpGold()```: collect all gold on the current tile. This will fail if there is no gold
+on the current tile or it has already been collected.   
 
 #### Repository Structure
 ```
@@ -117,9 +134,8 @@ phase.**
  
 |                                                                                                 | about                                                       | username                               |
 --------------------------------------------------------------------------------------------------|----------------------------------------------------------------|---------------------------------------------------|
-<img src="https://avatars1.githubusercontent.com/u/22638726?v=3&s=460"      height="50px" title="Eric Rodriguez"/>        |  Jake Holdom  - BSc Music & Audio Technology        | [`@BBK-PiJ-2016-52`](https://github.com/BBK-PiJ-2016-52)  |
 <img src="https://avatars0.githubusercontent.com/u/22904851?v=3&u=cfb4a9acace450d6628c1c80ce6e46c985e178d2&s=400"      height="50px" title="Eric Rodriguez"/>        |    Eric Rodriguez - B.Eng. Mechatronics      |  [`@BBK-PiJ-2016-52`](https://github.com/BBK-PiJ-2016-52) |
 
 #### Credits
-### Thank you to Eric Perdew, Ryan Pindulic, and Ethan Cecchetti from the Department of
-### Computer Science at Cornell for the basis of this coursework.
+ Thank you to Eric Perdew, Ryan Pindulic, and Ethan Cecchetti from the Department of
+ Computer Science at Cornell for the basis of this coursework.
