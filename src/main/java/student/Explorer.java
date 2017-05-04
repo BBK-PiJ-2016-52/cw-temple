@@ -2,6 +2,9 @@ package student;
 
 import game.EscapeState;
 import game.ExplorationState;
+import game.NodeStatus;
+
+import java.util.Collection;
 
 public class Explorer {
 
@@ -37,6 +40,28 @@ public class Explorer {
    */
   public void explore(ExplorationState state) {
     //TODO:
+      ExplorationState explore = new ExplorationState() {
+          @Override
+          public long getCurrentLocation() {
+              return 0;
+          }
+
+          @Override
+          public Collection<NodeStatus> getNeighbours() {
+              return null;
+          }
+
+          @Override
+          public int getDistanceToTarget() {
+              return 0;
+          }
+
+          @Override
+          public void moveTo(long id) {
+
+          }
+      };
+
   }
 
   /**
