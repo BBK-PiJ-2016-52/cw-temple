@@ -10,7 +10,7 @@ public class NodeStatus implements Comparable<NodeStatus> {
   private final int distance;
 
   /**
-   * Constructor: an instnce with id nodeId and distance dist.
+   * Constructor: an instance with id nodeId and distance dist.
    */
   NodeStatus(long nodeId, int dist) {
     id = nodeId;
