@@ -37,9 +37,9 @@ dependencies {
     testImplementation 'junit:junit:4.12'
 }
 
-//mainClassName = "main.GUImain"
-//mainClassName = "main.TXTmain"
-//mainClassName = "searchexample.Driver"
+mainClassName = "main.GUImain"
+mainClassName = "main.TXTmain"
+mainClassName = "searchexample.Driver"
 mainClassName = "searchexample.Maze"
 
 
