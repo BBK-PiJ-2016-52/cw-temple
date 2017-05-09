@@ -5,6 +5,10 @@ import game.ExplorationState;
 import game.NodeStatus;
 
 import java.util.Collection;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Set;
 
 public class Explorer {
 
@@ -40,28 +44,34 @@ public class Explorer {
    */
   public void explore(ExplorationState state) {
     //TODO:
-      ExplorationState explore = new ExplorationState() {
-          @Override
-          public long getCurrentLocation() {
-              return 0;
+
+      /**
+       * Breadth-first search (BFS) is an algorithm for traversing
+       * or searching tree or graph data structures.
+       */
+      Collection<NodeStatus> root = state.getNeighbours();
+      long current = state.getCurrentLocation();
+      long goal = state.getDistanceToTarget();
+
+      Set set = new LinkedHashSet();
+      Queue queue = new LinkedList();
+
+      set.add(current);
+      queue.add(root);
+
+      while (!queue.isEmpty()) {
+          current = (long) queue.remove();
+          if (current == goal) {
+              return;
           }
 
-          @Override
-          public Collection<NodeStatus> getNeighbours() {
-              return null;
+          for ( Set n : current) {
+              if (!set.contains(n)) {
+                  set.add(n);
+                  queue.add(n);
+              }
           }
-
-          @Override
-          public int getDistanceToTarget() {
-              return 0;
-          }
-
-          @Override
-          public void moveTo(long id) {
-
-          }
-      };
-
+      }
   }
 
   /**
