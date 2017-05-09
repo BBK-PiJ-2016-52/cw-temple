@@ -60,12 +60,12 @@ public class Explorer {
       queue.add(root);
 
       while (!queue.isEmpty()) {
-          current = (long) queue.remove();
+          queue.remove(current);
           if (current == goal) {
               return;
           }
 
-          for ( Set n : current) {
+          for (NodeStatus n : root) {
               if (!set.contains(n)) {
                   set.add(n);
                   queue.add(n);
