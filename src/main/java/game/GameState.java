@@ -122,7 +122,6 @@ public class GameState implements ExplorationState, EscapeState {
    * Run the game: first find the Orb and then escape.
    */
   private void run() {
-    // TODO: In the error cases we should really pop something up!
     explore();
     if (!exploreSucceeded) {
       return;
