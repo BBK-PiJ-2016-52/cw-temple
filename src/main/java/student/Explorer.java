@@ -4,11 +4,8 @@ import game.EscapeState;
 import game.ExplorationState;
 import game.NodeStatus;
 
-import java.util.Collection;
-import java.util.LinkedHashSet;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Explorer {
 
@@ -43,34 +40,42 @@ public class Explorer {
    * @param state the information available at the current state
    */
   public void explore(ExplorationState state) {
-    //TODO:
 
-      /**
-       * Breadth-first search (BFS) is an algorithm for traversing
-       * or searching tree or graph data structures.
-       */
-      Collection<NodeStatus> root = state.getNeighbours();
-      long current = state.getCurrentLocation();
-      long goal = state.getDistanceToTarget();
+      List<Long> previousNode = new ArrayList<>();
+      Stack<Long> pathTaken = new Stack<>();
+      pathTaken.add(state.getCurrentLocation());
+      previousNode.add(state.getCurrentLocation());
 
-      Set set = new LinkedHashSet();
-      Queue queue = new LinkedList();
-
-      set.add(current);
-      queue.add(root);
-
-      while (!queue.isEmpty()) {
-          queue.remove(current);
-          if (current == goal) {
-              return;
-          }
-
-          for (NodeStatus n : root) {
-              if (!set.contains(n)) {
-                  set.add(n);
-                  queue.add(n);
+      while (!(state.getDistanceToTarget() == 0)){
+          Collection<NodeStatus> neighbours = state.getNeighbours();
+          List<NodeStatus> list;
+          list = new ArrayList<>();
+          for (NodeStatus x : neighbours) {
+              if (!previousNode.contains(x.getId())) {
+                  list.add(x);
               }
           }
+          NodeStatus n;
+          long id;
+          if (list.size()>0){
+              List<NodeStatus> toSort = new ArrayList<>();
+              toSort.addAll(list);
+              toSort.sort(NodeStatus::compareTo);
+              NodeStatus found = null;
+              for (NodeStatus nodeStatus : toSort) {
+                  found = nodeStatus;
+                  break;
+              }
+              n = found;
+              assert n != null;
+              id = n.getId();
+              previousNode.add(id);
+              pathTaken.add(id);
+          } else {
+              pathTaken.pop();
+              id = pathTaken.peek();
+          }
+          state.moveTo(id);
       }
   }
 
