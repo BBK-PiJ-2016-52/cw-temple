@@ -1,11 +1,19 @@
 package student;
 
+import game.Edge;
 import game.EscapeState;
 import game.ExplorationState;
+import game.InternalMinHeap;
+import game.Node;
 import game.NodeStatus;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Stack;
 
 public class Explorer {
 
@@ -39,7 +47,7 @@ public class Explorer {
    *
    * @param state the information available at the current state
    */
-  public void explore(ExplorationState state) {
+  public void explore(ExplorationState state)  {
 
       List<Long> previousNode = new ArrayList<>();
       Stack<Long> pathTaken = new Stack<>();
@@ -104,6 +112,65 @@ public class Explorer {
    * @param state the information available at the current state
    */
   public void escape(EscapeState state) {
-    //TODO: Escape from the cavern before time runs out
+    //Package-private implementation of Dijkstra's algorithm that returns
+   //only the minimum distance between the given node and the target node for
+   //this cavern (Currently implemented on Cavern.)
+      InternalMinHeap<Node> node = new InternalMinHeap<>();
+      Map<Node, Node> previousNode = new HashMap<>();
+
+      // Contains an entry for each node
+      Map<Long, Integer> pathWeights = new HashMap<>();
+      Node originalPosition = state.getCurrentNode();
+
+      pathWeights.put(originalPosition.getId(), 0);
+      node.add(originalPosition, 0);
+
+      while (!node.isEmpty()) {
+          Node f = node.poll();
+
+          if (state.getExit().equals(f)) {
+              break;
+          }
+
+          int nWeight = pathWeights.get(f.getId());
+
+          for (Edge edge : f.getExits()) {
+              Node w = edge.getOther(f);
+              int weightThroughN = nWeight + edge.length();
+              Integer existingWeight = pathWeights.get(w.getId());
+
+              if (existingWeight != null) {
+                  if (weightThroughN < existingWeight) {
+                      pathWeights.put(w.getId(), weightThroughN);
+                      node.changePriority(w, weightThroughN);
+                  }
+              } else {
+                  pathWeights.put(w.getId(), weightThroughN);
+                  node.add(w, weightThroughN);
+              }
+
+              if (existingWeight == null || weightThroughN < existingWeight) {
+                  previousNode.put(w, f);
+              }
+          }
+      }
+
+      List<Node> visitOrder = new ArrayList<>();
+      Node u = state.getExit();
+
+      while (u != null) {
+          visitOrder.add(u);
+          u = previousNode.get(u);
+      }
+
+      Collections.reverse(visitOrder);
+      visitOrder.remove(0);
+
+      for (Node n : visitOrder) {
+          if (state.getCurrentNode().getTile().getGold() > 0) {
+              state.pickUpGold();
+          }
+          state.moveTo(n);
+      }
   }
 }
