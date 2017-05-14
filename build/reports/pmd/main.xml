@@ -1,3 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.5.1" timestamp="2017-05-07T16:42:08.803">
+<pmd version="5.5.1" timestamp="2017-05-14T17:11:31.740">
+<file name="C:\Users\Eric\IdeaProjects\cw-temple\src\main\java\student\Explorer.java">
+<violation beginline="74" endline="74" begincolumn="11" endcolumn="16" rule="AvoidBranchingStatementAsLastInLoop" ruleset="Basic" package="student" class="Explorer" method="explore" externalInfoUrl="https://pmd.github.io/pmd-5.5.1/pmd-java/rules/java/basic.html#AvoidBranchingStatementAsLastInLoop" priority="2">
+Avoid using a branching statement as the last in a loop.
+</violation>
+</file>
 </pmd>

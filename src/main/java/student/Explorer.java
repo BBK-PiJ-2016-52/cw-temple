@@ -48,43 +48,42 @@ public class Explorer {
    * @param state the information available at the current state
    */
   public void explore(ExplorationState state)  {
+    List<Long> previousNode = new ArrayList<>();
+    Stack<Long> pathTaken = new Stack<>();
+    pathTaken.add(state.getCurrentLocation());
+    previousNode.add(state.getCurrentLocation());
 
-      List<Long> previousNode = new ArrayList<>();
-      Stack<Long> pathTaken = new Stack<>();
-      pathTaken.add(state.getCurrentLocation());
-      previousNode.add(state.getCurrentLocation());
-
-      while (!(state.getDistanceToTarget() == 0)){
-          Collection<NodeStatus> neighbours = state.getNeighbours();
-          List<NodeStatus> list;
-          list = new ArrayList<>();
-          for (NodeStatus x : neighbours) {
-              if (!previousNode.contains(x.getId())) {
-                  list.add(x);
-              }
-          }
-          NodeStatus n;
-          long id;
-          if (list.size()>0){
-              List<NodeStatus> toSort = new ArrayList<>();
-              toSort.addAll(list);
-              toSort.sort(NodeStatus::compareTo);
-              NodeStatus found = null;
-              for (NodeStatus nodeStatus : toSort) {
-                  found = nodeStatus;
-                  break;
-              }
-              n = found;
-              assert n != null;
-              id = n.getId();
-              previousNode.add(id);
-              pathTaken.add(id);
-          } else {
-              pathTaken.pop();
-              id = pathTaken.peek();
-          }
-          state.moveTo(id);
+    while (!(state.getDistanceToTarget() == 0)) {
+      Collection<NodeStatus> neighbours = state.getNeighbours();
+      List<NodeStatus> list;
+      list = new ArrayList<>();
+      for (NodeStatus x : neighbours) {
+        if (!previousNode.contains(x.getId())) {
+          list.add(x);
+        }
       }
+      NodeStatus n;
+      long id;
+      if (list.size() > 0) {
+        List<NodeStatus> toSort = new ArrayList<>();
+        toSort.addAll(list);
+        toSort.sort(NodeStatus::compareTo);
+        NodeStatus found = null;
+        for (NodeStatus nodeStatus : toSort) {
+          found = nodeStatus;
+          break;
+        }
+        n = found;
+        assert n != null;
+        id = n.getId();
+        previousNode.add(id);
+        pathTaken.add(id);
+      } else {
+        pathTaken.pop();
+        id = pathTaken.peek();
+      }
+      state.moveTo(id);
+    }
   }
 
   /**
@@ -113,64 +112,64 @@ public class Explorer {
    */
   public void escape(EscapeState state) {
     //Package-private implementation of Dijkstra's algorithm that returns
-   //only the minimum distance between the given node and the target node for
-   //this cavern (Currently implemented on Cavern.)
-      InternalMinHeap<Node> node = new InternalMinHeap<>();
-      Map<Node, Node> previousNode = new HashMap<>();
+    //only the minimum distance between the given node and the target node for
+    //this cavern (Currently implemented on Cavern.)
+    InternalMinHeap<Node> node = new InternalMinHeap<>();
+    Map<Node, Node> previousNode = new HashMap<>();
 
-      // Contains an entry for each node
-      Map<Long, Integer> pathWeights = new HashMap<>();
-      Node originalPosition = state.getCurrentNode();
+    // Contains an entry for each node
+    Map<Long, Integer> pathWeights = new HashMap<>();
+    Node originalPosition = state.getCurrentNode();
 
-      pathWeights.put(originalPosition.getId(), 0);
-      node.add(originalPosition, 0);
+    pathWeights.put(originalPosition.getId(), 0);
+    node.add(originalPosition, 0);
 
-      while (!node.isEmpty()) {
-          Node f = node.poll();
+    while (!node.isEmpty()) {
+      Node f = node.poll();
 
-          if (state.getExit().equals(f)) {
-              break;
-          }
-
-          int nWeight = pathWeights.get(f.getId());
-
-          for (Edge edge : f.getExits()) {
-              Node w = edge.getOther(f);
-              int weightThroughN = nWeight + edge.length();
-              Integer existingWeight = pathWeights.get(w.getId());
-
-              if (existingWeight != null) {
-                  if (weightThroughN < existingWeight) {
-                      pathWeights.put(w.getId(), weightThroughN);
-                      node.changePriority(w, weightThroughN);
-                  }
-              } else {
-                  pathWeights.put(w.getId(), weightThroughN);
-                  node.add(w, weightThroughN);
-              }
-
-              if (existingWeight == null || weightThroughN < existingWeight) {
-                  previousNode.put(w, f);
-              }
-          }
+      if (state.getExit().equals(f)) {
+        break;
       }
 
-      List<Node> visitOrder = new ArrayList<>();
-      Node u = state.getExit();
+      int numberOfWeight = pathWeights.get(f.getId());
 
-      while (u != null) {
-          visitOrder.add(u);
-          u = previousNode.get(u);
-      }
+      for (Edge edge : f.getExits()) {
+        Node w = edge.getOther(f);
+        int weightThroughN = numberOfWeight + edge.length();
+        Integer existingWeight = pathWeights.get(w.getId());
 
-      Collections.reverse(visitOrder);
-      visitOrder.remove(0);
-
-      for (Node n : visitOrder) {
-          if (state.getCurrentNode().getTile().getGold() > 0) {
-              state.pickUpGold();
+        if (existingWeight != null) {
+          if (weightThroughN < existingWeight) {
+            pathWeights.put(w.getId(), weightThroughN);
+            node.changePriority(w, weightThroughN);
           }
-          state.moveTo(n);
+        } else {
+          pathWeights.put(w.getId(), weightThroughN);
+          node.add(w, weightThroughN);
+        }
+
+        if (existingWeight == null || weightThroughN < existingWeight) {
+          previousNode.put(w, f);
+        }
       }
+    }
+
+    List<Node> visitOrder = new ArrayList<>();
+    Node u = state.getExit();
+
+    while (u != null) {
+      visitOrder.add(u);
+      u = previousNode.get(u);
+    }
+
+    Collections.reverse(visitOrder);
+    visitOrder.remove(0);
+
+    for (Node n : visitOrder) {
+      if (state.getCurrentNode().getTile().getGold() > 0) {
+        state.pickUpGold();
+      }
+      state.moveTo(n);
+    }
   }
 }
